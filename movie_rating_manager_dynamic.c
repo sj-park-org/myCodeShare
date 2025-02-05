@@ -146,7 +146,7 @@ void print_an_item(struct movie* head) {
         pnode = pnode->next;
         count++;
     }
-    if (pnode != NULL) //검색하려는 pnode가 없을때.
+    if (pnode != NULL) //검색하려는 pnode가 없지 않을때. pnode가 NULL이 아닐때
         printf("%d : \"%s\", %.1f\n", count, pnode->title, pnode->rating);
     else
         printf("Invalid item\n");
@@ -197,7 +197,7 @@ void add_an_item(struct movie** p_head) {
     int f = scanf("%[^\n]%*c", new_movie->title);
     printf("Input rating and press enter.\n");
     printf(">> ");
-    f = scanf("%f%c", &new_movie->rating);
+    f = scanf("%f%*c", &new_movie->rating);
     int count = 0;
     struct movie* pnode = *p_head;
     if (pnode == NULL)
