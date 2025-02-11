@@ -2,7 +2,7 @@
 // Created by spros on 25. 2. 6.
 //
 
-#include "SimpleList.h"
+#include "SimpleList2.h"
 
 #include <stdio.h>
 #include <stdlib.h>
