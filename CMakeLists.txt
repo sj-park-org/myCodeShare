@@ -9,4 +9,5 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(code1 main.c
         SimpleList.h
-        SimpleList.c)
+        SimpleList.c
+)

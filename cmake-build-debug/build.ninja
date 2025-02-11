@@ -49,14 +49,14 @@ cmake_ninja_workdir = C$:/Users/spros/Git/code1/cmake-build-debug/
 
 build cmake_object_order_depends_target_code1: phony || .
 
-build CMakeFiles/code1.dir/main2.c.obj: C_COMPILER__code1_unscanned_Debug C$:/Users/spros/Git/code1/main2.c || cmake_object_order_depends_target_code1
-  DEP_FILE = CMakeFiles\code1.dir\main2.c.obj.d
+build CMakeFiles/code1.dir/main.c.obj: C_COMPILER__code1_unscanned_Debug C$:/Users/spros/Git/code1/main.c || cmake_object_order_depends_target_code1
+  DEP_FILE = CMakeFiles\code1.dir\main.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\code1.dir
   OBJECT_FILE_DIR = CMakeFiles\code1.dir
 
-build CMakeFiles/code1.dir/SimpleList2.c.obj: C_COMPILER__code1_unscanned_Debug C$:/Users/spros/Git/code1/SimpleList2.c || cmake_object_order_depends_target_code1
-  DEP_FILE = CMakeFiles\code1.dir\SimpleList2.c.obj.d
+build CMakeFiles/code1.dir/SimpleList.c.obj: C_COMPILER__code1_unscanned_Debug C$:/Users/spros/Git/code1/SimpleList.c || cmake_object_order_depends_target_code1
+  DEP_FILE = CMakeFiles\code1.dir\SimpleList.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\code1.dir
   OBJECT_FILE_DIR = CMakeFiles\code1.dir
@@ -69,7 +69,7 @@ build CMakeFiles/code1.dir/SimpleList2.c.obj: C_COMPILER__code1_unscanned_Debug 
 #############################################
 # Link the executable code1.exe
 
-build code1.exe: C_EXECUTABLE_LINKER__code1_Debug CMakeFiles/code1.dir/main2.c.obj CMakeFiles/code1.dir/SimpleList2.c.obj
+build code1.exe: C_EXECUTABLE_LINKER__code1_Debug CMakeFiles/code1.dir/main.c.obj CMakeFiles/code1.dir/SimpleList.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\code1.dir
