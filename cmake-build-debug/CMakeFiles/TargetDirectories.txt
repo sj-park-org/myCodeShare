@@ -1,3 +1,0 @@
-C:/Users/spros/Git/code1/cmake-build-debug/CMakeFiles/code1.dir
-C:/Users/spros/Git/code1/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/spros/Git/code1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
