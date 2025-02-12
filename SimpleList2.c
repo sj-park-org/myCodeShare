@@ -14,7 +14,7 @@ void InitializeList(struct list* plist) {
     plist->head = NULL;
 }
 bool IsEmpty(const struct list* plist) {
-    if (plist->head ==NULL)
+    if (plist->head == NULL)
         return true;
     else
         return false;
@@ -54,6 +54,7 @@ bool InsertItemFront(struct movie item, struct list* plist) {
     new_node->next = temp;
     return true;
 }
+//새로운 노드를 만들고 item과 next를 설정. prev와 이어주고, 새로운 노드와 prev->next를 이음
 bool AppendItem(struct movie item, struct node* prev) {
     struct node* new_node;
     new_node = (struct node*)malloc(sizeof(struct node));
