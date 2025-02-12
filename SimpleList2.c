@@ -22,7 +22,7 @@ bool IsEmpty(const struct list* plist) {
 bool IsFull(const struct list* plist) {
     struct node* pt;
     bool full;
-    pt = (struct node*)malloc(sizeof(struct node));
+    pt = (struct node*)malloc(sizeof(struct node)); //node는 힙메모리 사용을 통해 사용하여 공유됨, 지역변수는 사라지므로 안됨.
     //운영체제에서 malloc을 해주지 않았을때.
     if (pt == NULL)
         full= true;
@@ -123,7 +123,7 @@ void Traverse(const struct list* plist, void (*pfun)(struct movie item)) {
 bool Find(const struct list* plist, struct movie item_to_find, int* index, struct movie* item_found,
     bool (*compare_func)(struct movie a, struct movie b)) {
     struct node* pnode = plist->head;
-    *index =0;
+    *index = 0;
     while (pnode != NULL) {
         if ((*compare_func)(pnode->item, item_to_find) == true) {
             *item_found = pnode->item;
@@ -159,6 +159,7 @@ bool FindItemByIndex(const struct list* plist, const int index, struct movie** i
         return true;
     }
 }
+
 struct node* FindNodeByIndex(const struct list* plist, const int index) {
     struct node* pnode = plist->head;
     int count = 0;
@@ -169,6 +170,7 @@ struct node* FindNodeByIndex(const struct list* plist, const int index) {
     }
     return pnode;
 }
+
 void InsertByIndex(struct movie item, struct list* plist, int index) {
     struct node* prev = FindNodeByIndex(plist, index - 1);
     if (prev == NULL)
