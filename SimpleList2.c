@@ -90,6 +90,7 @@ bool AddItem(struct movie item, struct list* plist) {
     }
     return true;
 }
+
 unsigned int WriteAllItems(const struct list* plist, FILE* file, void (*write_an_item_func)(FILE* file, struct movie item)) {
     struct node* pnode = plist->head;
     unsigned int count = 0;
