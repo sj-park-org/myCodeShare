@@ -131,7 +131,56 @@ void edit_an_item(struct list* plist) {
         printf("%d : \n", index);
         print_an_item(*pitem);
     }
+    else
+        printf("Invalid item.\n");
 }
+void add_an_item(struct list* plist) {
+    printf("Input title and press enter.\n");
+    printf(">> ");
+    struct movie new_item;
+
+    int f = scanf("%[^\n]%*c", &new_item.rating);
+    printf("Input rating and press enter.\n");
+    printf(">> ");
+    f = scanf("%f%*c", &new_item.rating);
+
+    AddItem(new_item, plist);
+    printf("%d : \"%s\", %.1f\n", CountItems(plist) - 1, new_item.title, new_item.rating);
+
+}
+void insert_an_item(struct list* plist) {
+    printf("Input the index of item to insert.\n");
+    int index = input_int();
+    struct moive* pitem;
+
+    const bool flag = FindItemByIndex(plist, index, &pitem);
+
+    if (flag == false) {
+        printf("Wrong index\n");
+        return;
+    }
+
+    struct movie new_item;
+    printf("Input title and press enter.\n");
+    printf(">> ");
+    int f = scanf("%[^\n]%*c", new_item.title);
+    printf("Input rating and press enter.\n");
+    printf(">> ");
+    f = scanf("%f%*c", &new_item.rating);
+
+    printf("%d : \"%s\", %.1f\n", index, new_item.title, new_item.rating);
+    InsertByIndex(new_item, plist, index);
+}
+void delete_an_item(struct list* plist) {
+    printf("INput the index of item to delete.\n");
+    int index = input_int();
+
+    struct movie* pitem;
+    const bool flag = FindItemByIndex(plist, index, &pitem);
+}
+
+
+
 
 
 
