@@ -104,7 +104,33 @@ void find_and_print_an_item(const struct list* const plist) {
     int index = input_int();
     struct movie* pitem;
     const bool flag = FindItemByIndex(plist, index, &pitem);
+    if (flag == true) {
+        printf("%d : ", index);
+        print_an_item(*pitem);
+    }
+    else
+        printf("Invalid item.\n");
+}
+void edit_an_item(struct list* plist) {
+    printf("Input the index of item to edit.\n");
+    int index = input_int();
+    struct movie* pitem;
+    const bool flag = FindItemByIndex(plist, index, &pitem);
+    if (flag == true) {
+        printf("%d : ", index);
+        print_an_item(*pitem);
+        struct movie new_item;
+        printf("Input new title and press enter.\n");
+        printf(">> ");
+        int f = scanf("%[%\n]%*c", new_item.title);
+        printf("Input new rating and press enter.\n");
+        printf(">> ");
+        f = scanf("%f%*c", &new_item.rating);
+        *pitem = new_item;
 
+        printf("%d : \n", index);
+        print_an_item(*pitem);
+    }
 }
 
 
