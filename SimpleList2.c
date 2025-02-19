@@ -101,7 +101,9 @@ unsigned int WriteAllItems(const struct list* plist, FILE* file, void (*write_an
     }
     return count;
 }
-unsigned int PrintAllItems(const struct list* plist, void (*print_an_item_func)(struct movie item)) {
+unsigned int PrintAllItems(const struct list* plist,
+                   	void (*print_an_item_func)(struct movie item)) {
+
     struct node* pnode = plist->head;
     unsigned int count = 0;
     while (pnode != NULL) {
