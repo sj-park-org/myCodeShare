@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -113,7 +114,83 @@ void add_an_item(struct list* plist) {
     printf(">> ");
     f = scanf("%f%*c", &new_item.rating);
     AddItem(new_item, plist);
+    printf("\n");
 
+}
+
+void insert_an_item(struct list* plist) {
+    printf("Input the index of item to insert.\n");
+    int index = input_int();
+    struct movie* pitem;
+    const bool flag = FindItemByIndex(plist, index, &pitem);
+    //여기서는 pitem을 활용하지 않고 flag만 필요함
+    if (flag == false) {
+        printf("Wrong index\n");
+        return;
+    }
+    struct movie new_item;
+    printf("Input title and press enter.\n");
+    printf(">> ");
+    int f = scanf("%[^\n]%*c", new_item.title);
+    printf("Input rating and press enter.\n");
+    printf(">> ");
+    f = scanf("%f%*c", &new_item.rating);
+    printf("%d : \"%s\", %.1f\n", index, new_item.title, new_item.rating);
+    InsertByIndex(new_item, plist, index);
+}
+void delete_an_item(struct list* plist) {
+    printf("Input the index of item to delete.\n");
+    int index = input_int();
+    struct movie* pitem;
+    const bool flag = FindItemByIndex(plist, index, &pitem);
+    if (flag == false){
+        printf("Wrong index\n");
+        return;
+    }
+    RemoveByIndex(plist, index);
+}
+void delete_all_items(struct list* plist) {
+    ClearList(plist);
+}
+void write_an_item(FILE* const file, const struct movie item) {
+    fprintf(file, "%s\n", item.title);
+    fprintf(file, "%.1f\n", item.rating);
+}
+
+void write_file(const struct list* const plist) {
+    char filename[TSIZE] = {};
+    printf("Please input filename to write and pree Enter.\n");
+    printf(">> ");
+    if (scanf("%[^\n]%*c", filename) != 1) {
+        printf("Wrong input. Terminating.\n");
+        exit(1);
+    }
+    FILE * file = fopen(filename, "w");
+    if (file == NULL) {
+        printf("ERROR: Cannot open file.\n");
+        exit(1);
+    }
+    unsigned int num = CountItems(plist);
+    fprintf(file, "%d\n", num);
+    unsigned int count = WriteAllItems(plist, file, &write_an_item);
+    assert(count == num);
+    fclose(file);
+}
+void search_by_name(const struct list* plist) {
+    printf("Input title to search and press enter.\n");
+    printf(">> ");
+    struct movie item_to_find;
+    char title[TSIZE] = {};
+    if (scanf("%[^\n]%*c", item_to_find.title) != 1) {
+        printf("Wrong input.\n");
+        return;
+    }
+    struct movie item_found;
+    int index;
+    if (Find(plist, item_to_find, &index, &item_found, compare_items) ==0 ) {
+        printf("No movie found : %s\n", item_to_find.title);
+        return;
+    }
 }
 
 int main(void)
@@ -137,6 +214,21 @@ int main(void)
                 break;
             case 4:
                 add_an_item(&movie_list);
+                break;
+            case 5:
+                insert_an_item(&movie_list);
+                break;
+            case 6:
+                delete_an_item(&movie_list);
+                break;
+            case 7:
+                delete_all_items(&movie_list);
+                break;
+            case 8:
+                write_file(&movie_list);
+                break;
+            case 9:
+                search_by_name(&movie_list);
                 break;
         }
 

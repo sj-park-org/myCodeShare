@@ -29,7 +29,7 @@ void InsertByIndex(struct movie item, struct list* plist, int index);
 void RemoveByIndex(struct list* plist, int index);
 bool InsertItemFront(struct movie item, struct list* plist);
 bool Find(const struct list* plist, struct movie item_to_find, int* index, struct movie* item_found,
-bool (*compare_func)(struct movie a, struct movie b));
+    bool (*compare_func)(struct movie a, struct movie b));
 
 unsigned int CountItems(const struct list* plist);
 unsigned int PrintAllItems(const struct list* plist, void (*print_an_item_func)(struct movie item));

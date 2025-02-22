@@ -91,8 +91,10 @@ bool AddItem(struct movie item, struct list* plist) {
     return true;
 }
 
-unsigned int WriteAllItems(const struct list* plist, FILE* file, void (*write_an_item_func)(FILE* file, struct movie item)) {
-    struct node* pnode = plist->head;
+unsigned int WriteAllItems(const struct list* plist, FILE* file,
+            void (*write_an_item_func)(FILE* file, struct movie item)) {
+
+  struct node* pnode = plist->head;
     unsigned int count = 0;
     while (pnode != NULL) {
         (*write_an_item_func)(file, pnode->item);
@@ -122,8 +124,10 @@ void Traverse(const struct list* plist, void (*pfun)(struct movie item)) {
          pnode = pnode->next;
      }
 }
-bool Find(const struct list* plist, struct movie item_to_find, int* index, struct movie* item_found,
-    bool (*compare_func)(struct movie a, struct movie b)) {
+bool Find(const struct list* plist, struct movie item_to_find, int* index,
+          struct movie* item_found,
+          bool (*compare_func)(struct movie a, struct movie b)) {
+
     struct node* pnode = plist->head;
     *index = 0;
     while (pnode != NULL) {

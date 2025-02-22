@@ -31,3 +31,15 @@ unsigned int PrintAllItems(const struct list* plist, void (*print_an_item_func)(
 
 bool FindItemByIndex(const struct list* plist, const int index, struct movie** item);
 bool AddItem(struct movie item, struct list* plist);
+
+void InsertByIndex(struct movie item, struct list* plist, int index);
+void RemoveByIndex(struct list* plist, int index);
+
+void ClearList(struct list* plist);
+
+unsigned int CountItems(const struct list* plist);
+
+unsigned int WriteAllItems(const struct list* plist, FILE* file, void (*write_an_item_func)(FILE* file, struct movie item));
+
+bool Find(const struct list* plist, struct movie item_to_find, int* index, struct movie* item_found,
+ bool (*compre_func)(struct movie a, struct movie b));
