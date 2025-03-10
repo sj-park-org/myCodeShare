@@ -150,7 +150,8 @@ void ClearList(struct list* plist) {
     }
     plist->head = NULL;
 }
-bool FindItemByIndex(const struct list* plist, const int index, struct movie** item) {
+bool FindItemByIndex(const struct list* plist, const int index,
+                     struct movie** item) {
     struct node* pnode = plist->head;
     int count = 0;
     while (pnode != NULL) {

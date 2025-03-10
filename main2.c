@@ -72,7 +72,7 @@ int input_int() {
         printf(">> ");
         if (scanf("%d%*c", &input) ==1 ) return input;
         else {
-            printf("Please input an integer and press enter. Try agian.\n");
+            printf("Please input an integer and press enter. Try again.\n");
             while (getchar() != '\n') continue;
         }
     }
@@ -103,7 +103,7 @@ void print_all(const struct list* plist) {
 void find_and_print_an_item(const struct list* const plist) {
     printf("Input the index of item to print.\n");
     int index = input_int();
-    struct movie* pitem;
+    struct movie* pitem;//원본이 struct movie* pitem이다, 원본을 바꾸러면 이중 포인터가 들어가야 함
     const bool flag = FindItemByIndex(plist, index, &pitem);
 
     if (flag == true) {
@@ -260,7 +260,7 @@ int main() {
                 delete_all_items(&movie_list);
                 exit(0);
             default:
-                printf("%d is not implemeted.\n");
+                printf("%d is not implemeted.\n",s);
         }
     }
 }
