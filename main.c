@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "SimpleList.h"
 
@@ -9,7 +10,7 @@ void read_file(struct list* plist) {
     char filename[TSIZE] = {};
     printf("Please input filename to read and press Enter.\n");
     printf(">> ");
-    if (scanf("%[\n]%*c", filename) != 1) {
+    if (scanf("%[^\n]%*c", filename) != 1) {
         printf("Wrong input. Terminating.\n");
         exit(1);
     }
@@ -39,7 +40,7 @@ void read_file(struct list* plist) {
 int input_int() {
     int input;
     while (1) {
-        printf(">> \n");
+        printf(">> ");
         if (scanf("%d%*c", &input) ==1 ) return input;
         else {
             printf("Please input an integer and press enter. Try again.\n");
@@ -63,7 +64,7 @@ int input_menu() {
 }
 
 void print_an_item(struct movie item) {
-    printf("\"%s\", %.1f",item.title, item.rating);
+    printf("\"%s\", %.1f\n",item.title, item.rating);
 }
 void print_all(const struct list* plist) {
     PrintAllItems(plist, print_an_item);
@@ -71,7 +72,7 @@ void print_all(const struct list* plist) {
 void find_and_print_an_item(const struct list* const plist) {
     printf("Input the index of item to print.\n");
     int index = input_int();
-    struct movie* pitem;
+    struct movie pitem;
     const bool flag = FindItemByIndex(plist, index, &pitem);
     if (flag == true) {
         printf("%d : ", index);
@@ -84,11 +85,11 @@ void edit_an_item(struct list* plist) {
     printf("Input the index of item to edit.\n");
     int index = input_int();
 
-    struct movie* pitem;
+    struct movie pitem;
     const bool flag = FindItemByIndex(plist, index, &pitem);
     if (flag == true) {
         printf("%d : ", index);
-        print_an_item(*pitem);
+        print_an_item(pitem);
         struct movie new_item;
         printf("Input the title and press enter.\n");
         printf(">> ");
@@ -96,9 +97,9 @@ void edit_an_item(struct list* plist) {
         printf("Input new rating and press enter.\n");
         printf(">> ");
         f = scanf("%f%*c", &new_item.rating);
-        *pitem = new_item;
+        pitem = new_item;
         printf("%d : \n", index);
-        print_an_item(*pitem);
+        print_an_item(pitem);
     }else
         printf("Invalid item.\n");
 }
@@ -118,7 +119,7 @@ void add_an_item(struct list* plist) {
 void insert_an_item(struct list* plist) {
     printf("Input the index of item to insert.\n");
     int index = input_int();
-    struct movie* pitem;
+    struct movie pitem;
     const bool flag = FindItemByIndex(plist, index, &pitem);
     //struct movie* pitem이 아니라 struct movie item으로 바꿀 수 있는지? (매개변수등도 수정)
     if (flag == false) {
@@ -141,7 +142,7 @@ void delete_all_items(struct list *plist) {
 void delete_an_item(struct list* plist) {
     printf("Input the index of item to delete.\n");
     int index = input_int();
-    struct movie* pitem;
+    struct movie pitem;
     const bool flag = FindItemByIndex(plist, index, &pitem);
     if (flag == false) {
         printf("Wrong index\n");
@@ -172,8 +173,30 @@ void write_file(const struct list* const plist) {
     assert(count == num);
     fclose(file);
 }
+
+bool compare_items(struct movie a, struct movie b){
+    if (strcmp(a.title, b.title)==0)
+      return true;
+    else
+      return false;
+}
 void search_by_name(const struct list* plist) {
     printf("Input title to search and press enter.\n");
+    printf(">> ");
+    struct movie item_to_find;
+    char title[TSIZE] = {0,};
+    if (scanf("%[^\n]%*c", item_to_find.title) != 1){
+        printf("Wrong input.\n");
+        return;
+        }
+    struct movie item_found;
+    int index;
+    if (Find(plist, item_to_find, &index, &item_found, compare_items) == 0){
+        printf("No movie found : %s\n", item_to_find.title);
+        return;
+    }
+    else
+        printf("%d : \"%s\", %.1f\n", index, item_found.title, item_found.rating);
 }
 
 int main(void)
@@ -212,6 +235,12 @@ int main(void)
             case 9:
                 search_by_name(&movie_list);
                 break;
+            case 10:
+                printf("Good bye.\n");
+                delete_all_items(&movie_list);
+                exit(0);
+            default:
+                printf("%d is not implemeted.\n", s);
 
         }
 

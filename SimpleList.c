@@ -41,7 +41,7 @@ unsigned int PrintAllItems(const struct list* plist,
     return count;
 }
 bool FindItemByIndex(const struct list* plist, const int index,
-    struct movie** item) {
+    struct movie* item) {
 
     struct node* pnode = plist->head;
     int count = 0;
@@ -53,7 +53,7 @@ bool FindItemByIndex(const struct list* plist, const int index,
     if (pnode==NULL)
         return false;
     else {
-        *item = &pnode->item;
+        *item = pnode->item;
         return true;
     }
 }
@@ -141,6 +141,21 @@ unsigned int WriteAllItems(const struct list* plist, FILE* file,
         count++;
     }
     return count;
+}
+bool Find(const struct list* plist, struct movie item_to_find, int* index,
+          struct movie* item_found,
+         bool (*compare_func)(struct movie a, struct movie b)){
+       struct node* pnode = plist->head;
+       *index = 0;
+       while (pnode != NULL){
+         if ((*compare_func)(pnode->item, item_to_find) == true){
+           *item_found = pnode->item;
+           return true;
+           }
+           pnode = pnode->next;
+           *index += 1;
+           }
+           return false;
 }
 
 
