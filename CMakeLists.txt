@@ -7,7 +7,7 @@ set(CMAKE_C_STANDARD 11)
 #        SimpleList2.h
 #        SimpleList2.c)
 
-add_executable(code1 main.c
-        SimpleList.h
-        SimpleList.c
+add_executable(code1 main3.c
+        SimpleList3.h
+        SimpleList3.c
 )
