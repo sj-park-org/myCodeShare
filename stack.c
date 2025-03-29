@@ -24,7 +24,7 @@ bool IsEmpty(const struct stack* stack){
     else
       return false;
 }
-a
+
 void Push(struct stack* stack, struct element item)
     {
     if (IsFull(stack) == true)
