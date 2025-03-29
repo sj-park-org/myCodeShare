@@ -5,10 +5,10 @@
 #ifndef ELEMENT_H
 #define ELEMENT_H
 
-typedef struct
+struct element
 {
   int key;
-} element;
+};
 
 
 #endif //ELEMENT_H
