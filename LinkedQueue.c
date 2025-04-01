@@ -1,13 +1,10 @@
-//
-// Created by spros on 25. 4. 1.
-//
-
 #include "LinkedQueue.h"
+
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-static void CopyToNode(struct element item, struct node* p_node){
+static void CopyToNode(struct element item, struct node* p_node) {
     p_node->item = item;
 }
 
@@ -25,38 +22,37 @@ bool QueueIsFull(const struct queue* p_queue) {
     return p_queue->n_items == MAXITEMS;
 }
 
-bool QueueOsEmpty(const struct queue* p_queue) {
+bool QueueIsEmpty(const struct queue* p_queue) {
     return p_queue->n_items == 0;
 }
-
 int QueueItemCount(const struct queue* p_queue) {
-    return p_queue->n_items; //매번 카운트를 하면 포인터를 따라가면서 성능 감소가 발생. 단순히 숫자를 저장
+    return p_queue->n_items;
 }
 
 bool EnQueue(struct element item, struct queue* p_queue) {
     if (QueueIsFull(p_queue)) {
-        printf("Queue is full. Cannot enqueue/\n");
+        printf("Queue is full. Cannot enqueue.\n");
         return false;
     }
-    struct node* p_new;
-    p_new = (struct node*)malloc(sizeof(struct node));
-    if (p_new == NULL) {
+    struct node* p_newNode;
+    p_newNode = (struct node*)malloc(sizeof(struct node));
+    if (p_newNode == NULL) {
         printf("Malloc() failed.\n");
         return false;
     }
-    CopyToNode(item, p_new);
-    p_new->next = NULL;
+    CopyToNode(item, p_newNode);
+    p_newNode->next = NULL;
 
     if (QueueIsEmpty(p_queue))
-        p_queue->front = p_new;
+        p_queue->front = p_newNode;
     else
-        p_queue->rear->next = p_new;
-    p_queue->rear = p_new;
+        p_queue->rear->next = p_newNode;
+    p_queue->rear = p_newNode;
     p_queue->n_items++;
     return true;
 }
 
-bool DeQueue(struct elment* p_item, struct queue* p_queue) {
+bool DeQueue(struct element* p_item, struct queue* p_queue) {
     if (QueueIsEmpty(p_queue)) {
         printf("Queue is empty. Cannot dequeue.\n");
         return false;
@@ -66,11 +62,11 @@ bool DeQueue(struct elment* p_item, struct queue* p_queue) {
     p_node = p_queue->front;
     p_queue->front = p_queue->front->next;
     free(p_node);
-    p_queue->n_items--;
-    if (p_queue->n_items == 0)
+    if (p_queue->n_items==0)
         p_queue->rear = NULL;
 
     return true;
+
 }
 
 void EmptyTheQueue(struct queue* p_queue) {

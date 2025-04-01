@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "LinkedQueue.h"
+#include "LinkedQueue2.h"
 
 struct element get_item(const char * name) {
     struct element new_item;
@@ -11,7 +11,7 @@ struct element get_item(const char * name) {
 }
 
 void print_item(struct element item) {
-    printf("%s\n", item.name);
+    printf("%s ", item.name);
 }
 
 void print_queue(struct queue* p_queue) {

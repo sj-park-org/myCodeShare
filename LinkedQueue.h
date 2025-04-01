@@ -3,18 +3,18 @@
 #include <stdbool.h>
 
 #define TSIZE 45
-#define MAXITEMS 3  //옵션
+#define MAXITEMS 3
 
-struct element{ //데이터
-  char name[TSIZE];
-}element;
+struct element {
+    char name[TSIZE];
+};
 
-struct node { //연결
+struct node {
     struct element item;
     struct node* next;
 };
 
-struct queue { //전체 연결, 데이터
+struct queue {
     struct node* front;
     struct node* rear;
     int n_items;

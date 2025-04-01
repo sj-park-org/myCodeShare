@@ -4,22 +4,22 @@
 
 #include "LinkedQueue.h"
 
-struct element get_item(const char * name) {
+struct element get_item(const char* name) {
     struct element new_item;
     strcpy(new_item.name, name);
     return new_item;
 }
 
 void print_item(struct element item) {
-    printf("%s\n", item.name);
+    printf("%s ", item.name);
 }
 
 void print_queue(struct queue* p_queue) {
     printf("Front: %s at %p, Rear: %s at %p, Size %d\n",
-        p_queue->front == NULL ? "NULL" : p_queue->front->item.name, p_queue->front,
-        p_queue->rear == NULL ? "NULL" : p_queue->rear->item.name, p_queue->rear, p_queue->n_items);
+    p_queue->front == NULL ? "NULL" : p_queue->front->item.name, p_queue->front,
+    p_queue->rear == NULL ? "NULL" : p_queue->rear->item.name, p_queue->rear, p_queue->n_items);
 
-    printf("Queue: \n");
+    printf("Queue : \n");
     if (QueueIsEmpty(p_queue))
         printf("Empty");
     else
@@ -27,8 +27,9 @@ void print_queue(struct queue* p_queue) {
     printf("\n\n");
 }
 
-int main(void)
-{
+
+
+int main(void) {
     struct queue queue;
     struct element temp;
 
@@ -66,6 +67,7 @@ int main(void)
 
     InitializeQueue(&queue);
 
+
     for (int i = 0; i < 10; ++i) {
         EnQueue(get_item("Hello"), &queue);
         print_queue(&queue);
@@ -77,6 +79,5 @@ int main(void)
 
 
 
-    return 0;
-}
 
+}

@@ -7,7 +7,7 @@
 
 struct element{ //데이터
   char name[TSIZE];
-}element;
+};
 
 struct node { //연결
     struct element item;
