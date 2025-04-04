@@ -7,11 +7,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void CopyToNode(struct element item, struct node* p_node){
+static void CopyToNode(struct cust item, struct node* p_node){
     p_node->item = item;
 } // 매개변수 아이템을 노드의 아이템에 복사
 
-static void CopyToItem(struct node* p_node, struct element* p_item) {
+static void CopyToItem(struct node* p_node, struct cust* p_item) {
     *p_item = p_node->item;
 } // 노드의 아이템을 매개변수 아이템에 복사
 
@@ -33,7 +33,7 @@ int QueueItemCount(const struct queue* p_queue) {
     return p_queue->n_items; //매번 카운트를 하면 포인터를 따라가면서 성능 감소가 발생. 단순히 숫자를 저장
 }
 
-bool EnQueue(struct element item, struct queue* p_queue) {
+bool EnQueue(struct cust item, struct queue* p_queue) {
     if (QueueIsFull(p_queue)) {
         printf("Queue is full. Cannot enqueue.\n");
         return false;
@@ -56,7 +56,7 @@ bool EnQueue(struct element item, struct queue* p_queue) {
     return true;
 }
 
-bool DeQueue(struct element* p_item, struct queue* p_queue) {
+bool DeQueue(struct cust* p_item, struct queue* p_queue) {
     if (QueueIsEmpty(p_queue)) {
         printf("Queue is empty. Cannot dequeue.\n");
         return false;
@@ -74,12 +74,12 @@ bool DeQueue(struct element* p_item, struct queue* p_queue) {
 }
 
 void EmptyTheQueue(struct queue* p_queue) {
-    struct element temp;
+    struct cust temp;
     while (!QueueIsEmpty(p_queue))
         DeQueue(&temp, p_queue);
 }
 
-void TraverseQueue(struct queue* p_queue, void (*func)(struct element item)) {
+void TraverseQueue(struct queue* p_queue, void (*func)(struct cust item)) {
     struct node* temp = p_queue->front;
     while (temp != NULL) {
         (*func)(temp->item);

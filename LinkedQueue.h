@@ -20,7 +20,6 @@ struct queue {
     struct node* rear;
 };
 
-
 void InitializeQueue(struct queue* p_queue);
 bool QueueIsFull(const struct queue* p_queue);
 bool QueueIsEmpty(const struct queue* p_queue);

@@ -4,8 +4,9 @@
 #include "linkedqueue.h"
 
 
+// rand()는 0~32767
+// RAND_MAX는 32767
 // rand()/ RAND_MAX는 0.0~1사이의 값.
-// rand()는 0~32767을 나타낸다고 하면 RAND_MAX는 32767임
 // min_per_cust(x) = 60.0f / average_n_customers_per_hour;
 // 평균 손님이 만약 30이라면 x는 2
 // rand()/ RAND_MAX는 0.0~1 인데 2를 곱하면 false가 많아짐.
@@ -53,7 +54,7 @@ int main() {
     printf("How many customers per hour do you expect? \n>> ");
     flag = scanf("%d", &average_n_customers_per_hour);
 
-    cyclelimit = simulation_length_in_hours * 60;
+    cyclelimit = simulation_length_in_hours * 60; //시간 * 60 = 분
     min_per_cust = 60.0f / average_n_customers_per_hour;
 
     for (cycle = 1; cycle <= cyclelimit; cycle++) {
