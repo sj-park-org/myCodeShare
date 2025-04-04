@@ -1,16 +1,19 @@
-#include "LinkedQueue.h"
+//
+// Created by spros on 25. 4. 1.
+//
 
+#include "LinkedQueue2.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-static void CopyToNode(struct element item, struct node* p_node) {
+static void CopyToNode(struct element item, struct node* p_node){
     p_node->item = item;
-}
+} // 매개변수 아이템을 노드의 아이템에 복사
 
 static void CopyToItem(struct node* p_node, struct element* p_item) {
     *p_item = p_node->item;
-}
+} // 노드의 아이템을 매개변수 아이템에 복사
 
 void InitializeQueue(struct queue* p_queue) {
     p_queue->front = NULL;
@@ -25,8 +28,9 @@ bool QueueIsFull(const struct queue* p_queue) {
 bool QueueIsEmpty(const struct queue* p_queue) {
     return p_queue->n_items == 0;
 }
+
 int QueueItemCount(const struct queue* p_queue) {
-    return p_queue->n_items;
+    return p_queue->n_items; //매번 카운트를 하면 포인터를 따라가면서 성능 감소가 발생. 단순히 숫자를 저장
 }
 
 bool EnQueue(struct element item, struct queue* p_queue) {
@@ -40,7 +44,7 @@ bool EnQueue(struct element item, struct queue* p_queue) {
         printf("Malloc() failed.\n");
         return false;
     }
-    CopyToNode(item, p_newNode);
+    CopyToNode(item, p_newNode); //뉴노드에 아이템을 복사
     p_newNode->next = NULL;
 
     if (QueueIsEmpty(p_queue))
@@ -58,15 +62,15 @@ bool DeQueue(struct element* p_item, struct queue* p_queue) {
         return false;
     }
     struct node* p_node;
-    CopyToItem(p_queue->front, p_item);
+    CopyToItem(p_queue->front, p_item); //노드의 아이템을 *p_item에 복사
     p_node = p_queue->front;
     p_queue->front = p_queue->front->next;
     free(p_node);
-    if (p_queue->n_items==0)
+    p_queue->n_items--;
+    if (p_queue->n_items == 0)
         p_queue->rear = NULL;
 
     return true;
-
 }
 
 void EmptyTheQueue(struct queue* p_queue) {
