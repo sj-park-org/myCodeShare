@@ -11,7 +11,7 @@ struct item {
 };
 
 void print_items_array(struct item items[], int size);
-int compare_items(vonst void* first, const void* second);
+int compare_items(const void* first, const void* second);
 
 const struct item* sequential_search(const struct item items[], const int size, const char name[TMAX]);
 const struct item* binary_search(const struct item items[], const int size, const char name[TMAX]);
