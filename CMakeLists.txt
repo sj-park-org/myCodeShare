@@ -3,4 +3,6 @@ project(lecture1 C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(lecture1 main.c)
+add_executable(lecture1 main.c
+        tree.h
+        tree.c)
