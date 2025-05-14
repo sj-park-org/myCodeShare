@@ -95,10 +95,10 @@ bool DeleteItem(const struct item* p_item, struct tree* p_tree) {
         return false;
     if (look.parent == NULL)//부모가 없다는건, 루트 노드라는 것임.
         DeleteNode(&p_tree->root);
-    else if(look.parent->left == look.child) // 차일드가 레프트일 경우.
+    else if(look.parent->left == look.child) // 자식이 부모의 left인지 right인지 판단
         DeleteNode(&look.parent->left);
     else
-        DeleteNode(&look.parent->right); //차일드가 라이트일 경우
+        DeleteNode(&look.parent->right); //자식이 부모의 left인지 right인지 판단
     p_tree->size--;
     return true;
 }
@@ -163,7 +163,9 @@ struct item* TreeSearch(struct tree* tree, const struct item key) {
 
 
 
-static struct pair SeekItem(const struct item* p_item, const struct tree* p_tree) {
+static struct pair SeekItem(const struct item* p_item,
+    const struct tree* p_tree) {
+
     struct pair look;
     look.parent = NULL;
     look.child = p_tree->root;
@@ -186,6 +188,7 @@ static struct pair SeekItem(const struct item* p_item, const struct tree* p_tree
 }
 
 static void DeleteNode(struct node** ptr) {
+    //**을 하면 struct node가 나오는 포인터
     struct node* temp;
 
     if((*ptr)->left == NULL) {

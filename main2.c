@@ -15,7 +15,9 @@ void print_item(struct item item) {
 }
 
 void print2DUtil(struct node* root, int space) {
-    space += SPACING;
+    space += SPACING; // 다음 깊이로 갈 때 들여쓰기 증가
+    //SPACING	한 단계(depth) 내려갈 때마다 얼마만큼 가로 들여쓰기를 할지를 정해주는 상수 (기준 단위)
+    //space	현재 노드의 출력 위치를 나타내는 전체 누적 들여쓰기 거리(SPACING의 누적 값)
 
     if (root == NULL) {
         for (int i = SPACING; i< space; i++)
@@ -24,16 +26,17 @@ void print2DUtil(struct node* root, int space) {
         return;
     }
 
-    print2DUtil(root->right, space);
+    print2DUtil(root->right, space);// 오른쪽 자식 먼저 출력
     printf("\n");
     for (int i = SPACING; i< space;i++)
         printf(" ");
-    print_item(root->item);
-    print2DUtil(root->left, space);
+    print_item(root->item); // 현재 노드 출력
+    print2DUtil(root->left, space); // 왼쪽 자식 출력
 }
 
-void print_node(struct node* root, int level) {
-    if (root==NULL)
+
+void print_node(struct node *root, int level) {
+    if (root == NULL)
         return;
 
     printf("%s (%s) -> ", root->item.character, root->item.name);
